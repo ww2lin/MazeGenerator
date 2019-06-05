@@ -1,6 +1,8 @@
 # Maze Generator
 A simple program written in Kotlin to generate mazes
 
+![time lapse](https://github.com/ww2lin/MazeGenerator/blob/master/screenshot/maze-timelapse.gif)
+
 ![10 x 10 board](https://github.com/ww2lin/MazeGenerator/blob/master/screenshot/maze10x10.png)
 
 ![50 x 50 board](https://github.com/ww2lin/MazeGenerator/blob/master/screenshot/maze50x50.png)
