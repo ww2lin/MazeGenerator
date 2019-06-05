@@ -10,7 +10,7 @@ class MazeView(
     private val viewSize: Int,
     private val thickness: Int,
     private val margin: Int,
-    private val timeLapse: Boolean = false
+    timeLapse: Boolean = false
 ) : JComponent() {
 
 
