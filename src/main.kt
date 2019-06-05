@@ -1,10 +1,10 @@
 import javax.swing.JFrame
 
 fun main() {
-    val dimen = 1000
-    val screenDimen = 1000
+    val dimen = 50
+    val screenDimen = 500
 
-    val maze = MazeBoard(dimen)
+    val maze = MazeGenerator(dimen)
     val view = MazeView(maze,
         screenDimen,
         5,

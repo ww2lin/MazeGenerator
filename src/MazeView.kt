@@ -4,7 +4,7 @@ import java.awt.Graphics2D
 import javax.swing.JComponent
 
 class MazeView(
-    private val maze: MazeBoard,
+    private val maze: MazeGenerator,
     private val viewSize: Int,
     private val thickness: Int,
     private val margin: Int

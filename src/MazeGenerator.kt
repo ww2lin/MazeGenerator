@@ -1,8 +1,8 @@
-import java.util.*
+import java.util.Stack
 import kotlin.random.Random
 import kotlin.test.assertEquals
 
-class MazeBoard(val dimension: Int) {
+class MazeGenerator(val dimension: Int) {
 
     companion object {
         const val EMPTY = 0
