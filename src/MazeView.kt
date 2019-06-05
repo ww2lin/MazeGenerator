@@ -14,7 +14,7 @@ class MazeView(
 ) : JComponent() {
 
 
-    private val connections: List<Pair<Pair<Int, Int>, Pair<Int, Int>>> = maze.getConnections().toList()
+    private val connections = maze.getConnections().toList()
     private var stepSize = when (timeLapse) {
                                     true -> 0
                                     else -> connections.size
