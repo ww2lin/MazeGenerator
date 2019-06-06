@@ -5,9 +5,9 @@ The program can generate random mazes or generate maze from a picture see below.
 
 ![time lapse](https://github.com/ww2lin/MazeGenerator/blob/master/screenshot/maze-timelapse.gif)
 
-![face](https://github.com/ww2lin/MazeGenerator/blob/master/screenshot/face.gif)
+![face](https://github.com/ww2lin/MazeGenerator/blob/master/screenshot/face.png)
 
-![rose](https://github.com/ww2lin/MazeGenerator/blob/master/screenshot/rose.gif)
+![rose](https://github.com/ww2lin/MazeGenerator/blob/master/screenshot/rose.png)
 
 ![10 x 10 board](https://github.com/ww2lin/MazeGenerator/blob/master/screenshot/maze10x10.png)
 
