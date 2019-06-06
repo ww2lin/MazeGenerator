@@ -14,7 +14,7 @@ class MazeView(
 ) : JComponent() {
 
 
-    private lateinit var connections: List<Pair<Pair<Int,Int>, Pair<Int, Int>>>
+    private lateinit var connections: List<Pair<Pair<Int, Int>, Pair<Int, Int>>>
     private var stepSize = 0
 
     init {
@@ -62,11 +62,13 @@ class MazeView(
 
 
                 if (stepSize < connections.size) {
-                    repaint(0,
+                    repaint(
+                        0,
                         minX - margin,
                         minY - margin,
                         maxX - minX + margin + thickness,
-                        maxY - minY + margin + thickness)
+                        maxY - minY + margin + thickness
+                    )
                 }
 
             }

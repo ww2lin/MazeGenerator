@@ -2,8 +2,10 @@ import java.util.Stack
 import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
 
-class MazeGenerator(val dimension: Int,
-                    private val board: Array<ByteArray> =  Array(dimension) { ByteArray(dimension) { EMPTY }}) {
+class MazeGenerator(
+    val dimension: Int,
+    private val board: Array<ByteArray> = Array(dimension) { ByteArray(dimension) { EMPTY } }
+) {
 
     companion object {
         const val EMPTY = 0.toByte()
@@ -40,7 +42,7 @@ class MazeGenerator(val dimension: Int,
         val stack = Stack<Triple<Int, Int, Pair<Int, Int>?>>()
         stack.push(initCoord)
 
-        while(stack.isNotEmpty()) {
+        while (stack.isNotEmpty()) {
             val currentCell = stack.pop()
             val row = currentCell.first
             val col = currentCell.second

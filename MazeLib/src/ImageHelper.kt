@@ -6,9 +6,11 @@ import javax.imageio.ImageIO
 fun getBlackWhiteImage(imagePath: String, dimen: Int): BufferedImage {
     val bufferedImage = ImageIO.read(File(imagePath))
     val image = bufferedImage.getScaledInstance(dimen, dimen, Image.SCALE_FAST)
-    val blackWhite = BufferedImage(image.getWidth(null),
+    val blackWhite = BufferedImage(
+        image.getWidth(null),
         image.getHeight(null),
-        BufferedImage.TYPE_BYTE_BINARY)
+        BufferedImage.TYPE_BYTE_BINARY
+    )
     val g2d = blackWhite.createGraphics()
     g2d.drawImage(image, 0, 0, null)
     g2d.dispose()
@@ -20,7 +22,7 @@ fun imageToArray(image: BufferedImage): Array<ByteArray> {
     val width = image.getWidth(null)
     val height = image.getHeight(null)
 
-    val result = Array(width){ ByteArray(height) { MazeGenerator.EMPTY} }
+    val result = Array(width) { ByteArray(height) { MazeGenerator.EMPTY } }
 
     for (i in 0 until image.getWidth(null)) {
         for (j in 0 until image.getHeight(null)) {
