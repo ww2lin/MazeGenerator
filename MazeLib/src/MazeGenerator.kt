@@ -1,24 +1,39 @@
 import java.util.Stack
-import kotlin.random.Random
 import kotlin.test.assertEquals
+import kotlin.test.assertNotNull
 
-class MazeGenerator(val dimension: Int) {
+class MazeGenerator(val dimension: Int,
+                    private val board: Array<ByteArray> =  Array(dimension) { ByteArray(dimension) { EMPTY }}) {
 
     companion object {
-        const val EMPTY = 0
-        const val VISITED = 1
+        const val EMPTY = 0.toByte()
+        const val VISITED = 0x1.toByte()
     }
-
-    private val board = Array(dimension) { IntArray(dimension) { EMPTY } }
 
     // Keep track of starting and ending coordinate.
     private val start = mutableListOf<Pair<Int, Int>>()
     private val end = mutableListOf<Pair<Int, Int>>()
 
     init {
-        val startRow = Random.nextInt(dimension)
-        val startCol = Random.nextInt(dimension)
-        constructBoard(Triple(startRow, startCol, null))
+        assertNotNull(board)
+        assertNotNull(board[0])
+        assertEquals(board.size, board[0].size)
+
+        val positions: MutableList<Pair<Int, Int>> = mutableListOf()
+
+        for (i in 0 until dimension) {
+            for (j in 0 until dimension) {
+                if (board[i][j] == EMPTY) {
+                    positions.add(Pair(i, j))
+                }
+            }
+        }
+        // shuffle the available positions.
+        positions.shuffle()
+
+        for (coord in positions) {
+            constructBoard(Triple(coord.first, coord.second, null))
+        }
     }
 
     private fun constructBoard(initCoord: Triple<Int, Int, Pair<Int, Int>?>) {

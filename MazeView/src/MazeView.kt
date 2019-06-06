@@ -6,20 +6,30 @@ import kotlin.math.max
 import kotlin.math.min
 
 class MazeView(
-    private val maze: MazeGenerator,
+    private var maze: MazeGenerator,
     private val viewSize: Int,
     private val thickness: Int,
     private val margin: Int,
-    timeLapse: Boolean = false
+    private val timeLapse: Boolean = false
 ) : JComponent() {
 
 
-    private val connections = maze.getConnections().toList()
-    private var stepSize = when (timeLapse) {
-                                    true -> 0
-                                    else -> connections.size
-                                }
+    private lateinit var connections: List<Pair<Pair<Int,Int>, Pair<Int, Int>>>
+    private var stepSize = 0
 
+    init {
+        reload(maze)
+    }
+
+
+    fun reload(newMaze: MazeGenerator) {
+        connections = newMaze.getConnections().toList()
+        stepSize = when (timeLapse) {
+            true -> 0
+            else -> connections.size
+        }
+        repaint()
+    }
 
     public override fun paintComponent(g: Graphics) {
         super.paintComponent(g)
