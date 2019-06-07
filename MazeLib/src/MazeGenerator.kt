@@ -44,11 +44,8 @@ class MazeGenerator(
         stack.push(initCoord)
 
         while (stack.isNotEmpty()) {
-            val currentCell = stack.pop()
-            val row = currentCell.first
-            val col = currentCell.second
+            val (row, col, previousCoord) = stack.pop()
             val currentCoord = Pair(row, col)
-            val previousCoord = currentCell.third
 
             if (!withinBounds(row, col) || visitedSet[row][col] == VISITED) {
                 continue
