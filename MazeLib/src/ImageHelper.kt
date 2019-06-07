@@ -1,3 +1,4 @@
+import java.awt.Color
 import java.awt.Image
 import java.awt.image.BufferedImage
 import java.io.File
@@ -18,16 +19,17 @@ fun getBlackWhiteImage(imagePath: String, dimen: Int): BufferedImage {
 }
 
 
-fun imageToArray(image: BufferedImage): Array<ByteArray> {
+fun imageToArray(image: BufferedImage): Array<IntArray> {
     val width = image.getWidth(null)
     val height = image.getHeight(null)
 
-    val result = Array(width) { ByteArray(height) { MazeGenerator.EMPTY } }
+    val result = Array(width) { IntArray(height) { MazeGenerator.EMPTY } }
 
     for (i in 0 until image.getWidth(null)) {
         for (j in 0 until image.getHeight(null)) {
-            // grab the black pixels
-            if (image.getRGB(i, j) != -1) {
+            // grab the none white pixels
+            val sRGB = image.getRGB(i,j)
+            if (sRGB != -1) {
                 result[i][j] = MazeGenerator.EMPTY
             } else {
                 result[i][j] = MazeGenerator.VISITED
