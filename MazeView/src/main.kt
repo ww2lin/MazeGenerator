@@ -15,7 +15,8 @@ fun main() {
 
     val maze = MazeGenerator(dimen)
     val view = MazeView(
-        maze,
+        maze.getConnections().toList(),
+        maze.dimension,
         screenDimen,
         lineThickness,
         margin,
@@ -26,7 +27,7 @@ fun main() {
 
     val importImageMenu = createImportMenuButton { filepath -> presenter.loadImageAndRefresh(filepath, dimen, view) }
     val exportImageMenu = createExportMenuButton { filePath, fileName ->  presenter.exportImage(filePath, fileName, view)}
-    val newRandomMaze = createNewRandomMazeButton { view.reload(MazeGenerator(dimen)) }
+    val newRandomMaze = createNewRandomMazeButton { presenter.newMaze(dimen, view) }
     val aboutMe = createAboutMenuButton()
 
     val menuBar = JMenuBar().apply {

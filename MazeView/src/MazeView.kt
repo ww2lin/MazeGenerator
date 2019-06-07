@@ -6,24 +6,24 @@ import kotlin.math.max
 import kotlin.math.min
 
 class MazeView(
-    private var maze: MazeGenerator,
-    private val viewSize: Int,
-    private val thickness: Int,
-    private val margin: Int,
+    private var connections: List<Pair<Pair<Int, Int>, Pair<Int, Int>>>,
+    private var dimen: Int = 50,
+    private val viewSize: Int = 500,
+    private val thickness: Int = 5,
+    private val margin: Int = 5,
     private val timeLapse: Boolean = false
 ) : JComponent() {
 
-
-    private lateinit var connections: List<Pair<Pair<Int, Int>, Pair<Int, Int>>>
     private var stepSize = 0
 
     init {
-        reload(maze)
+        reload(dimen, connections)
     }
 
 
-    fun reload(newMaze: MazeGenerator) {
-        connections = newMaze.getConnections().toList()
+    fun reload(dimen: Int, connections: List<Pair<Pair<Int, Int>, Pair<Int, Int>>>) {
+        this.connections = connections
+        this.dimen = dimen
         stepSize = when (timeLapse) {
             true -> 0
             else -> connections.size
@@ -38,7 +38,7 @@ class MazeView(
         g2.stroke = BasicStroke(thickness.toFloat())
 
         // avoid integer truncation
-        val spacing = (viewSize * 1.0 / maze.dimension)
+        val spacing = (viewSize * 1.0 / dimen)
 
         connections
             .subList(0, min(++stepSize, connections.size))

@@ -6,12 +6,12 @@ import javax.swing.JComponent
 
 class Presenter {
 
-    val imageHelper = ImageHelper()
+    private val imageHelper = ImageHelper()
 
     fun loadImageAndRefresh(filePath: String, dimen: Int, mazeView: MazeView) {
-        val image = imageHelper.getBlackWhiteImage(filePath, dimen)
+        val image = imageHelper.getBlackWhiteImage(filePath, dimen, BufferedImage.TYPE_INT_ARGB)
         val maze = MazeGenerator(dimen, board = imageHelper.imageToArray(image))
-        mazeView.reload(maze)
+        mazeView.reload(dimen, maze.getConnections().toList())
     }
 
     fun exportImage(exportDirectory: String, fileName: String, view: JComponent) {
@@ -19,6 +19,11 @@ class Presenter {
         view.rootPane.contentPane.paint(img.createGraphics())
         val outputDir = File(exportDirectory + fileName + "_" + System.currentTimeMillis() + ".png")
         ImageIO.write(img, "png", outputDir)
+    }
+
+    fun newMaze(dimen: Int, mazeView: MazeView) {
+        val maze = MazeGenerator(dimen)
+        mazeView.reload(dimen, maze.getConnections().toList())
     }
 }
 
