@@ -12,15 +12,14 @@ fun main() {
     val margin = 5
     val screenDimen = 600
     val lineThickness = 5
+    val timeLapse = true
 
-    val maze = MazeGenerator(dimen)
     val view = MazeView(
-        maze.getConnections().toList(),
-        maze.dimension,
+        dimen,
         screenDimen,
         lineThickness,
         margin,
-        timeLapse = true
+        timeLapse = timeLapse
     )
 
     val presenter = Presenter()

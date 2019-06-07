@@ -5,7 +5,7 @@ import javax.imageio.ImageIO
 
 class ImageHelper {
 
-    fun getBlackWhiteImage(imagePath: String, dimen: Int, imageType: Int): BufferedImage {
+    fun getImage(imagePath: String, dimen: Int, imageType: Int): BufferedImage {
         val bufferedImage = ImageIO.read(File(imagePath))
         val image = bufferedImage.getScaledInstance(dimen, dimen, Image.SCALE_FAST)
         val blackWhite = BufferedImage(
@@ -29,6 +29,25 @@ class ImageHelper {
         for (i in 0 until image.getWidth(null)) {
             for (j in 0 until image.getHeight(null)) {
                 result[i][j] = image.getRGB(i,j)
+            }
+        }
+
+        return result
+    }
+
+    fun imageToBWArray(image: BufferedImage): Array<IntArray> {
+        val width = image.getWidth(null)
+        val height = image.getHeight(null)
+
+        val result = Array(width) { IntArray(height) { MazeGenerator.EMPTY } }
+
+        for (i in 0 until image.getWidth(null)) {
+            for (j in 0 until image.getHeight(null)) {
+                if (image.getRGB(i,j) == -1) {
+                    result[i][j] = MazeGenerator.VISITED
+                } else {
+                    result[i][j] = MazeGenerator.EMPTY
+                }
             }
         }
 

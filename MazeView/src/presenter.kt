@@ -9,8 +9,16 @@ class Presenter {
     private val imageHelper = ImageHelper()
 
     fun loadImageAndRefresh(filePath: String, dimen: Int, mazeView: MazeView) {
-        val image = imageHelper.getBlackWhiteImage(filePath, dimen, BufferedImage.TYPE_INT_ARGB)
-        val maze = MazeGenerator(dimen, board = imageHelper.imageToArray(image))
+        val image = imageHelper.getImage(filePath, dimen, BufferedImage.TYPE_INT_ARGB)
+        val image2DArray = imageHelper.imageToArray(image)
+        val maze = MazeGenerator(dimen, board = image2DArray)
+        mazeView.reload(dimen, maze.getConnections().toList(), image2DArray, stepIncrementSize = dimen/10)
+    }
+
+    fun loadImageAsBlackAndWhiteThenRefresh(filePath: String, dimen: Int, mazeView: MazeView) {
+        val image = imageHelper.getImage(filePath, dimen, BufferedImage.TYPE_BYTE_BINARY)
+        val image2DArray = imageHelper.imageToBWArray(image)
+        val maze = MazeGenerator(dimen, board = image2DArray)
         mazeView.reload(dimen, maze.getConnections().toList())
     }
 

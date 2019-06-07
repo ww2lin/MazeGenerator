@@ -25,9 +25,8 @@ class MazeGenerator(
         val visitedSet = Array(dimension) { IntArray(dimension) { EMPTY } }
         for (i in 0 until dimension) {
             for (j in 0 until dimension) {
-                if (board[i][j] == EMPTY) {
-                    positions.add(Pair(i, j))
-                } else {
+                positions.add(Pair(i, j))
+                if (board[i][j] == VISITED) {
                     visitedSet[i][j] = VISITED
                 }
             }
