@@ -22,8 +22,10 @@ fun main() {
         timeLapse = true
     )
 
-    val importImageMenu = createImportMenuButton { filepath -> loadImageAndRefresh(filepath, dimen, view) }
-    val exportImageMenu = createExportMenuButton { filePath, fileName ->  exportImage(filePath, fileName, view)}
+    val presenter = Presenter()
+
+    val importImageMenu = createImportMenuButton { filepath -> presenter.loadImageAndRefresh(filepath, dimen, view) }
+    val exportImageMenu = createExportMenuButton { filePath, fileName ->  presenter.exportImage(filePath, fileName, view)}
     val newRandomMaze = createNewRandomMazeButton { view.reload(MazeGenerator(dimen)) }
     val aboutMe = createAboutMenuButton()
 
