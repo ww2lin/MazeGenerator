@@ -2,8 +2,6 @@ import javax.swing.JFrame
 import java.awt.Dimension
 import java.awt.FileDialog
 import java.awt.Frame
-import java.io.File
-import javax.swing.JFileChooser
 import javax.swing.JMenu
 import javax.swing.JMenuBar
 import javax.swing.JMenuItem

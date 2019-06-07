@@ -4,7 +4,7 @@ import kotlin.test.assertNotNull
 
 class MazeGenerator(
     val dimension: Int,
-    private val board: Array<IntArray> = Array(dimension) { IntArray(dimension) { EMPTY } }
+    board: Array<IntArray> = Array(dimension) { IntArray(dimension) { EMPTY } }
 ) {
 
     companion object {
@@ -22,23 +22,25 @@ class MazeGenerator(
         assertEquals(board.size, board[0].size)
 
         val positions: MutableList<Pair<Int, Int>> = mutableListOf()
-
+        val visitedSet = Array(dimension) { IntArray(dimension) { EMPTY } }
         for (i in 0 until dimension) {
             for (j in 0 until dimension) {
                 if (board[i][j] == EMPTY) {
                     positions.add(Pair(i, j))
+                } else {
+                    visitedSet[i][j] = VISITED
                 }
             }
         }
         // shuffle the available positions.
         positions.shuffle()
-        val visitedSet = mutableSetOf<Pair<Int, Int>>()
+
         for (coord in positions) {
             constructBoard(Triple(coord.first, coord.second, null), visitedSet)
         }
     }
 
-    private fun constructBoard(initCoord: Triple<Int, Int, Pair<Int, Int>?>, visitedSet: MutableSet<Pair<Int, Int>>) {
+    private fun constructBoard(initCoord: Triple<Int, Int, Pair<Int, Int>?>, visitedSet: Array<IntArray>) {
         val stack = Stack<Triple<Int, Int, Pair<Int, Int>?>>()
         stack.push(initCoord)
 
@@ -49,11 +51,11 @@ class MazeGenerator(
             val currentCoord = Pair(row, col)
             val previousCoord = currentCell.third
 
-            if (!withinBounds(row, col) || visitedSet.contains(currentCoord)) {
+            if (!withinBounds(row, col) || visitedSet[row][col] == VISITED) {
                 continue
             }
 
-            visitedSet.add(currentCoord)
+            visitedSet[row][col] = VISITED
 
             val next = arrayListOf(
                 Triple(row + 1, col, currentCoord),
